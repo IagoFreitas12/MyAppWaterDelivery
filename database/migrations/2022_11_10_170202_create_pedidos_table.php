@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->endereco();
+            $table->string('endereco');
             $table->foreignId('cliente_id')->constrained();
             $table->foreignId('forma_de_pagamento_id')->constrained();
             $table->timestamps();
