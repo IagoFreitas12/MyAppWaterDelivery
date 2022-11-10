@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->increments('id');
-            $table->char('nome', 50);
+            $table->string('nome', 50);
             $table->double('preco', 6, 2);
             $table->foreignId('categoria_id')->constrained();
             $table->timestamps();
