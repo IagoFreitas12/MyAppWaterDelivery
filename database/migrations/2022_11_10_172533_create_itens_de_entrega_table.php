@@ -15,9 +15,12 @@ return new class extends Migration
     {
         Schema::create('itens_de_entrega', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pedido_id')->constrained();
-            $table->foreignId('entrega_id')->constrained();
-            $table->foreignId('status_id')->constrained();
+            $table->foreignId('pedido_id');
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreignId('entrega_id');
+            $table->foreign('entrega_id')->references('id')->on('entregas');
+            $table->foreignId('status_id');
+            $table->foreign('status_id')->references('id')->on('statuses');
             $table->timestamps();
         });
     }
