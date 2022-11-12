@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->string('endereco');
-            $table->foreignId('cliente_id')->constrained();
-            $table->foreignId('forma_de_pagamento_id')->constrained();
+            $table->foreignId('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreignId('forma_de_pagamento_id');
+            $table->foreign('forma_de_pagamento_id')->references('id')->on('formas_de_pagamento');
             $table->timestamps();
         });
     }
