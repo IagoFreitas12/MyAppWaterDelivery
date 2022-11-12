@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('entregas', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('entregador_id')->constrained();
+            $table->foreignId('entregador_id');
+            $table->foreign('entregador_id')->references('id')->on('entregadores');
             $table->timestamps();
         });
     }
