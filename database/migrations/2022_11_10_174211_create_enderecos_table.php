@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('latitude', 12)->nullable();
             $table->string('longitude', 12)->nullable();
-            $table->foreignId('cliente_id')->constrained();
+            $table->foreignId('cliente_id');
+            $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->timestamps();
         });
     }
