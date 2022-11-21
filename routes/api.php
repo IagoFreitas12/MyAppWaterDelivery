@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EntregasController;
+use App\Http\Controllers\CategoriasController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::prefix('entregas')->group(function(){
     Route::get('/{id}/rotas', [EntregasController::class, 'rotas']);
+});
+
+Route::prefix('categorias')->group(function(){
+    Route::post('/', [CategoriasController::class, 'store']);
+    // Route::resource('categoria', CategoriasController::class)->only([
+    //     'store', 'show', 'update', 'destroy'
+    // ]);
 });

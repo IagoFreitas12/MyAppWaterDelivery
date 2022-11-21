@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Categoria;
 
 class CategoriasController extends Controller
 {
@@ -23,7 +24,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -34,7 +35,8 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categoria = Categoria::create($request->toArray());
+        return $categoria->toArray();
     }
 
     /**
