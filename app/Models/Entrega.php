@@ -12,5 +12,10 @@ class Entrega extends Model
         return $this->hasMany(ItemDeEntrega::class);
     }
 
+    public function entregador()
+    {
+        return $this->belongsTo(Entregadorr::class);
+    }
+
     use HasFactory;
 }
