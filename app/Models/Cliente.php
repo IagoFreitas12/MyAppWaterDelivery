@@ -12,9 +12,9 @@ class Cliente extends Model
         return $this->hasMany(Endereco::class);
     }
 
-    public function pedido()
+    public function pedidos()
     {
-        return $this->belongsTo(Pedido::class);
+        return $this->hasMany(Pedido::class);
     }
 
     use HasFactory;

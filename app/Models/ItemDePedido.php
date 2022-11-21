@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemDePedido extends Model
 {
-    public function pedidos()
+    public function pedido()
     {
-        return $this->hasOne(Pedido::class);
+        return $this->belongsTo(Pedido::class);
     }
 
     use HasFactory;

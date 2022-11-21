@@ -7,9 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
 {   
-    public function clientes()
+    public function cliente()
     {
-        return $this->hasMany(Cliente::class);
+        return $this->belongsTo(Cliente::class);
+    }
+    
+    public function itemDePedidos()
+    {
+        return $this->hasMany(ItemDePedido::class);
     }
 
     public function formaDePagamento()
@@ -22,11 +27,5 @@ class Pedido extends Model
         return $this->belongsTo(ItemDeEntrega::class);
     }
     
-    public function itemDePedido()
-    {
-        return $this->belongsTo(ItemDePedido::class);
-    }
-    
-
     use HasFactory;
 }
