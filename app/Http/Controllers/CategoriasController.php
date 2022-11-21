@@ -47,7 +47,9 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        //
+        return 
+            $categoria = Categoria::findOrFail($id);
+            $categoria->toArray();
     }
 
     /**
