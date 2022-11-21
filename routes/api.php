@@ -26,6 +26,7 @@ Route::prefix('entregas')->group(function(){
 
 Route::prefix('categorias')->group(function(){
     Route::post('/', [CategoriasController::class, 'store']);
+    Route::get('/{id}', [CategoriasController::class, 'show']);
     // Route::resource('categoria', CategoriasController::class)->only([
     //     'store', 'show', 'update', 'destroy'
     // ]);
