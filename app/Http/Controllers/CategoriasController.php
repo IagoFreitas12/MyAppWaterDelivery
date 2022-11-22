@@ -24,7 +24,7 @@ class CategoriasController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -89,6 +89,7 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Categoria::destroy($id);
+            
     }
 }
