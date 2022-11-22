@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntregasController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ProdutosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,15 +22,22 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('entregas')->group(function(){
-    Route::get('/{id}/rotas', [EntregasController::class, 'rotas']);
+    Route::get('/{id}', [EntregasController::class, 'rotas']);
 });
 
 Route::prefix('categorias')->group(function(){
     Route::post('/', [CategoriasController::class, 'store']);
     Route::get('/{id}', [CategoriasController::class, 'show']);
-    Route::patch('/{id}/update', [CategoriasController::class, 'update']);
-    // Route::delete('/delete/{id}', [CategoriasController::class, 'destroy']);
+    Route::patch('/{id}', [CategoriasController::class, 'update']);
+    Route::delete('/{id}', [CategoriasController::class, 'destroy']);
     // Route::resource('categoria', CategoriasController::class)->only([
     //     'store', 'show', 'update', 'destroy'
     // ]);
+});
+
+Route::prefix('produtos')->group(function(){
+    Route::post('/', [ProdutosController::class, 'store']);
+    Route::get('/{id}', [ProdutosController::class, 'show']);
+    Route::patch('/{id}', [ProdutosController::class, 'update']);
+    Route::delete('/{id}', [ProdutosController::class, 'destroy']);
 });
