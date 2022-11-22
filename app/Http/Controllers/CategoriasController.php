@@ -72,7 +72,13 @@ class CategoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'rotulo' => 'required',
+        ]);
+        $categoria = Categoria::find($id);
+        $categoria->rotulo = $request->rotulo;
+        $categoria->save();
+        return $categoria->toArray();
     }
 
     /**
