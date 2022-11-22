@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Produto;
 use Illuminate\Http\Request;
+use App\Models\Produto;
 
 class ProdutosController extends Controller
 {
@@ -72,7 +72,14 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required',
+            'preco' => 'required'
+        ]);
+        $produto = Produto::find($id);
+        $produto->rotulo = $request->rotulo;
+        $produto->save();
+        return $produto->toArray();
     }
 
     /**
@@ -83,6 +90,6 @@ class ProdutosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Produto::destroy($id);
     }
 }
