@@ -47,7 +47,9 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        //
+        return 
+        $produto = Produto::findOrFail($id);
+        $produto->toArray();
     }
 
     /**
