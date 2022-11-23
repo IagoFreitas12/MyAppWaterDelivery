@@ -10,7 +10,7 @@ class ItemDeEntrega extends Model
 {
     public function pedidos()
     {
-        return $this->HasMany(Pedido::class);
+        return $this->hasMany(Pedido::class);
     }
 
     public function entrega()
