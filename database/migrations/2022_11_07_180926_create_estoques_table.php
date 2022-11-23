@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('estoques', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('produto_id');
-            $table->foreign('produto_id')->references('id')->on('produtos');
+            $table->foreignId('produto_id')->nullable();
+            $table->foreign('produto_id')->references('id')->on('produtos')->onDelete('cascade');
             $table->integer('quantidade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
