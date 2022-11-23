@@ -14,7 +14,8 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        //
+        $produtos = Produto::all();
+        return response()->json($produtos->toArray());
     }
 
     /**
@@ -47,9 +48,8 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        return 
         $produto = Produto::findOrFail($id);
-        $produto->toArray();
+        return $produto->toArray();
     }
 
     /**
