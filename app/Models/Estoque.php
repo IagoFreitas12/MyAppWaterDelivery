@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Estoque extends Model
 {
+    public function produto()
+    {
+        return $this->hasOne(Produto::class);
+    }
+    
     use HasFactory;
 }
