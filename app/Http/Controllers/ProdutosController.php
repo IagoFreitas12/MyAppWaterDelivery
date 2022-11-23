@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Categoria;
+use App\Models\Produto;
 
-class CategoriasController extends Controller
+class ProdutosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::all();
-        return response()->json($categoria->toArray());
+        //
     }
 
     /**
@@ -36,8 +35,8 @@ class CategoriasController extends Controller
      */
     public function store(Request $request)
     {
-        $categoria = Categoria::create($request->toArray());
-        return $categoria->toArray();
+        $produto = Produto::create($request->toArray());
+        return $produto->toArray();
     }
 
     /**
@@ -49,8 +48,8 @@ class CategoriasController extends Controller
     public function show($id)
     {
         return 
-            $categoria = Categoria::findOrFail($id);
-            $categoria->toArray();
+        $produto = Produto::findOrFail($id);
+        $produto->toArray();
     }
 
     /**
@@ -74,12 +73,13 @@ class CategoriasController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'rotulo' => 'required',
+            'nome' => 'required',
+            'preco' => 'required'
         ]);
-        $categoria = Categoria::find($id);
-        $categoria->rotulo = $request->rotulo;
-        $categoria->save();
-        return $categoria->toArray();
+        $produto = Produto::find($id);
+        $produto->rotulo = $request->rotulo;
+        $produto->save();
+        return $produto->toArray();
     }
 
     /**
@@ -90,6 +90,6 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        return Categoria::destroy($id);   
+        return Produto::destroy($id);
     }
 }

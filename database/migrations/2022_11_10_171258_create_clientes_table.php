@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('sobrenome', 60)->nullable();
             $table->string('cpf/cnpj', 14);
             $table->string('telefone', 11);
-            $table->timestamps();
+            $$table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

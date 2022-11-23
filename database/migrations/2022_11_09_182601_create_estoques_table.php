@@ -18,7 +18,8 @@ return new class extends Migration
             $table->foreignId('produto_id');
             $table->foreign('produto_id')->references('id')->on('produtos');
             $table->integer('quantidade');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

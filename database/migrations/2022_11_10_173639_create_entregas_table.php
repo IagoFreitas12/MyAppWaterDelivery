@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('entregador_id');
             $table->foreign('entregador_id')->references('id')->on('entregadores');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

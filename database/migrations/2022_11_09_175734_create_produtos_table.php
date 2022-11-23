@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nome', 50);
+            $table->string('nome', 50)->unique();
             $table->double('preco', 6, 2);
             $table->foreignId('categoria_id');
-            $table->foreign('categoria_id')->references('id')->on('categorias');
-            $table->timestamps();
+            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('CASCADE');
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

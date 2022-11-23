@@ -21,7 +21,8 @@ return new class extends Migration
             $table->foreign('entrega_id')->references('id')->on('entregas');
             $table->foreignId('status_id');
             $table->foreign('status_id')->references('id')->on('statuses');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
