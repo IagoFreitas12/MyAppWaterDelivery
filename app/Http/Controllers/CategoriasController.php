@@ -14,7 +14,8 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        //
+        $categoria = Categoria::all();
+        return response()->json($categoria->toArray());
     }
 
     /**
@@ -89,7 +90,6 @@ class CategoriasController extends Controller
      */
     public function destroy($id)
     {
-        return Categoria::destroy($id);
-            
+        return Categoria::destroy($id);   
     }
 }
