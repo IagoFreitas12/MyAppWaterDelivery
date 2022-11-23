@@ -27,16 +27,15 @@ Route::prefix('entregas')->group(function(){
 
 Route::prefix('categorias')->group(function(){
     Route::post('/', [CategoriasController::class, 'store']);
+    Route::get('/', [CategoriasController::class, 'index']);
     Route::get('/{id}', [CategoriasController::class, 'show']);
     Route::patch('/{id}', [CategoriasController::class, 'update']);
     Route::delete('/{id}', [CategoriasController::class, 'destroy']);
-    // Route::resource('categoria', CategoriasController::class)->only([
-    //     'store', 'show', 'update', 'destroy'
-    // ]);
-});
+}); 
 
 Route::prefix('produtos')->group(function(){
     Route::post('/', [ProdutosController::class, 'store']);
+    Route::get('/', [ProdutosController::class, 'index']);
     Route::get('/{id}', [ProdutosController::class, 'show']);
     Route::patch('/{id}', [ProdutosController::class, 'update']);
     Route::delete('/{id}', [ProdutosController::class, 'destroy']);

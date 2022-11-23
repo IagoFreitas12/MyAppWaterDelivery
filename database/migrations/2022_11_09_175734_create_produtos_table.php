@@ -19,7 +19,8 @@ return new class extends Migration
             $table->double('preco', 6, 2);
             $table->foreignId('categoria_id');
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('CASCADE');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 

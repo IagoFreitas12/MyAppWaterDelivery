@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('longitude', 12)->nullable();
             $table->foreignId('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
         });
     }
 
