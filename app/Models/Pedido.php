@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Pedido extends Model
-{   
-    public function cliente()
-    {
-        return $this->belongsTo(Cliente::class);
-    }
-    
+{       
     public function itemDePedidos()
     {
         return $this->hasMany(ItemDePedido::class);
+    }
+    
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
     }
 
     public function formaDePagamento()
