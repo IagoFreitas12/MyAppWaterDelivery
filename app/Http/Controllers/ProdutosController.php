@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categoria;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 
@@ -14,8 +15,15 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        $produtos = Produto::all();
-        return response()->json($produtos->toArray());
+        $response = Produto::all()->toArray();
+        $produtos = [];
+        foreach($response as $produto) {
+            $categoria = Categoria::find($produto["categoria_id"])->toArray();
+            $produto["categoria"] = $categoria;
+            unset($produto["categoria_id"]);
+            array_push($produtos, $produto);
+        }
+        return $produtos;
     }
 
     /**
@@ -48,8 +56,11 @@ class ProdutosController extends Controller
      */
     public function show($id)
     {
-        $produto = Produto::findOrFail($id);
-        return $produto->toArray();
+        $produto = Produto::findOrFail($id)->toArray();
+        $categoria = Categoria::find($produto["categoria_id"])->toArray();
+        $produto["categoria"] = $categoria;
+        unset($produto["categoria_id"]);
+        return $produto;
     }
 
     /**
@@ -72,10 +83,10 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nome' => 'required',
-            'preco' => 'required'
-        ]);
+        // $request->validate([
+        //     'nome' => 'required',
+        //     'preco' => 'required'
+        // ]);
         $produto = Produto::find($id);
         $produto->rotulo = $request->rotulo;
         $produto->save();

@@ -9,9 +9,11 @@ class Produto extends Model
 {
     protected $fillable = [
         'nome',
-        'preco'
+        'preco',
+        'categoria_id'
     ];
-    public function produto()
+    
+    public function categoria()
     {
         return $this->belongsTo(Categoria::class);
     }
