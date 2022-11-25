@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Categoria;
+use App\Models\Produto;
 
 class CategoriasController extends Controller
 {
@@ -14,8 +15,14 @@ class CategoriasController extends Controller
      */
     public function index()
     {
-        $categoria = Categoria::all();
-        return response()->json($categoria->toArray());
+        $response = Categoria::all()->toArray();
+        $categorias = [];
+        foreach($response as $categoria){
+            $produto = Produto::where('categoria_id', $categoria['id'])->get();
+            $categoria['produto'] = $produto;
+            array_push($categorias, $categoria);
+        }
+        return response()->json($categorias);
     }
 
     /**
@@ -48,9 +55,8 @@ class CategoriasController extends Controller
      */
     public function show($id)
     {
-        return 
-            $categoria = Categoria::findOrFail($id);
-            $categoria->toArray();
+        $categoria = Categoria::findOrFail($id);
+        return $categoria->toArray();
     }
 
     /**
