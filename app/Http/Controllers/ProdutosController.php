@@ -76,6 +76,7 @@ class ProdutosController extends Controller
         // setar a verificação de quantidade no estoque
         $produto["categoria"] = $categoria;
         unset($produto["categoria_id"]);
+        //unset($produto["quantidade"]);
         return $produto;
     }
 
@@ -105,6 +106,7 @@ class ProdutosController extends Controller
         // ]);
         $produto = Produto::find($id);
         $produto->rotulo = $request->rotulo;
+        //$produto->quantidade = $request->quantidade;
         //devo ver se não é mais prático colocar o estoque do produto na tabela dele 
         //ou se deve ser trocada a relação para a referencia ficar em produtos
         $produto->save();
