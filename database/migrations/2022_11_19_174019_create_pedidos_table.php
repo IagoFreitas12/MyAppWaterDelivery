@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->string('endereco');
-            $table->foreignId('cliente_id');
+            $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
-            $table->foreignId('forma_de_pagamento_id');
+            $table->unsignedBigInteger('forma_de_pagamento_id');
             $table->foreign('forma_de_pagamento_id')->references('id')->on('formas_de_pagamento');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 

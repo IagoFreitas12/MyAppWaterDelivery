@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('telefone', 12);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 

@@ -15,12 +15,13 @@ return new class extends Migration
     {
         Schema::create('produtos', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 50)->unique();
+            $table->string('nome', 50);
             $table->double('preco', 6, 2);
-            $table->foreignId('categoria_id')->nullable();
+            $table->unsignedBigInteger('categoria_id')->nullable();
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('set null');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 

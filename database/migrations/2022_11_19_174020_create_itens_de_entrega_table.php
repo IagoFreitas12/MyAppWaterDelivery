@@ -15,14 +15,15 @@ return new class extends Migration
     {
         Schema::create('itens_de_entrega', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('pedido_id');
+            $table->unsignedBigInteger('pedido_id');
             $table->foreign('pedido_id')->references('id')->on('pedidos');
-            $table->foreignId('entrega_id');
+            $table->unsignedBigInteger('entrega_id');
             $table->foreign('entrega_id')->references('id')->on('entregas');
-            $table->foreignId('status_id');
+            $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('statuses');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 
