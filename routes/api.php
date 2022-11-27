@@ -26,6 +26,7 @@ Route::prefix('entregas')->group(function(){
 });
 
 Route::prefix('categorias')->group(function(){
+    // Route::apiResource('/categoria', CategoriasController::class);
     Route::post('/', [CategoriasController::class, 'store']);
     Route::get('/', [CategoriasController::class, 'index']);
     Route::get('/{id}', [CategoriasController::class, 'show']);

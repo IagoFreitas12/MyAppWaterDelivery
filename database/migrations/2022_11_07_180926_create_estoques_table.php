@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('estoques', function (Blueprint $table) {
             $table->id();
-            $table->string('rotulo', 30);
+            $table->unsignedBigInteger('produto_id')->nullable();
+            $table->foreign('produto_id')->references('id')->on('produtos')->cascadeOnUpdate()->nullOnDelete();
+            $table->integer('quantidade');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('estoques');
     }
 };

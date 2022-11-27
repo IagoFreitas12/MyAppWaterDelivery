@@ -9,7 +9,7 @@ class Entregador extends Model
 {
     public function entregas()
     {
-        return $this->HasMany(Entrega::class);
+        return $this->hasMany(Entrega::class);
     }
 
     use HasFactory;

@@ -8,9 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ItemDeEntrega extends Model
 {
+    protected $table = "itens_de_entrega";
+
     public function pedidos()
     {
-        return $this->HasMany(Pedido::class);
+        return $this->hasMany(Pedido::class);
     }
 
     public function entrega()

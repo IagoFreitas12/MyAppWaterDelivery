@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormaDePagamento extends Model
 {
+    protected $table = "formas_de_pagamento";
+
     public function pedidos()
     {
         return $this->hasMany(Pedido::class);

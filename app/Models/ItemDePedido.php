@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ItemDePedido extends Model
 {
+    protected $table = "itens_de_pedido";
+
     public function pedido()
     {
         return $this->belongsTo(Pedido::class);

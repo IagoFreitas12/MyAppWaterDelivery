@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clientes', function (Blueprint $table) {
+        Schema::create('entregas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 60);
-            $table->string('sobrenome', 60)->nullable();
-            $table->string('cpf/cnpj', 14);
-            $table->string('telefone', 11);
-            $$table->timestamp('created_at')->useCurrent();
+            $table->unsignedBigInteger('entregador_id');
+            $table->foreign('entregador_id')->references('id')->on('entregadores');
+            $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
+            $table->engine = "InnoDB";
         });
     }
 
@@ -31,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clientes');
+        Schema::dropIfExists('entregas');
     }
 };
