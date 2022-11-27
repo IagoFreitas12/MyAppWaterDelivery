@@ -18,5 +18,10 @@ class Produto extends Model
         return $this->belongsTo(Categoria::class);
     }
 
+    public function estoque()
+    {
+        return $this->belongsTo(Estoque::class);
+    }
+
     use HasFactory;
 }
