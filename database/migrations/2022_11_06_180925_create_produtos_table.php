@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('nome', 50);
             $table->double('preco', 6, 2);
             $table->unsignedBigInteger('categoria_id')->nullable();
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('set null');
+            $table->foreign('categoria_id')->references('id')->on('categorias')->cascadeOnUpdate()->nullOnDelete();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->engine = "InnoDB";
