@@ -41,3 +41,11 @@ Route::prefix('produtos')->group(function(){
     Route::patch('/{id}', [ProdutosController::class, 'update']);
     Route::delete('/{id}', [ProdutosController::class, 'destroy']);
 });
+
+Route::prefix('itensDePedido')->group(function(){
+    Route::post('/', [ItensDePedidoController::class, 'store']);
+    Route::get('/', [ItensDePedidoController::class, 'index']);
+    Route::get('/{id}', [ItensDePedidoController::class, 'show']);
+    Route::patch('/{id}', [ItensDePedidoController::class, 'update']);
+    Route::delete('/{id}', [ItensDePedidoController::class, 'destroy']);
+});
