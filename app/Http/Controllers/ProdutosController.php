@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Estoque;
 // use App\Models\Estoque;
 use Illuminate\Http\Request;
 use App\Models\Produto;
@@ -19,14 +20,14 @@ class ProdutosController extends Controller
     {
         $response = Produto::all()->toArray();
         $produtos = [];
-        // $estoques = [];
+        $estoques = [];
         foreach($response as $produto) {
             $categoria = Categoria::find($produto["categoria_id"])->toArray();
             $produto["categoria"] = $categoria;
             unset($produto["categoria_id"]);
-            // $estoque = Estoque::find($produto["estoque_id"])->toArray();
-            // $produto["quantidade"] = $estoque;
-            // unset($produto["estoque_id"]);
+            $estoque = Estoque::where('produto_id', $produto["id"])->take(1)->get()->toArray();
+            $produto["estoque"] = $estoque;
+            unset($produto["estoque_id"]);
             array_push($produtos, $produto);
         }
         return $produtos;
@@ -53,11 +54,12 @@ class ProdutosController extends Controller
         $request->validate([
             'nome' => 'required',
             'preco' => 'required',
-            'categoria_id'=> 'required'//,
-            //'estoque_id'=> 'required'
+            'categoria_id'=> 'required'
         ]);
-        $produto = Produto::create($request->toArray());
-        return $produto->toArray();
+        $produto = Produto::create($request->toArray())->toArray();
+        $estoque = Estoque::create(['quantidade'=> $request->toArray()['quantidade'] ?? 0, 'produto_id'=>$produto['id']])->toArray();
+        $produto['estoque'] = $estoque;
+        return $produto;
         //tenho que colocar a quantidade do produto aqui tbm 
         //pode não haver obrigatoriedade de informar o valor
     }
@@ -72,11 +74,13 @@ class ProdutosController extends Controller
     {
         $produto = Produto::findOrFail($id)->toArray();
         $categoria = Categoria::find($produto["categoria_id"])->toArray();
-        // $estoque = Estoque::find($produto["quantidade"])->toArray();
+        $estoque = Estoque::where('produto_id', $produto["id"])->take(1)->get()->toArray();
+        unset($estoque["produto_id"]);
         // setar a verificação de quantidade no estoque
         $produto["categoria"] = $categoria;
+        $produto["estoque"] = $estoque;
         unset($produto["categoria_id"]);
-        //unset($produto["quantidade"]);
+        unset($produto["estoque_id"]);
         return $produto;
     }
 
@@ -100,17 +104,8 @@ class ProdutosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $request->validate([
-        //     'nome' => 'required',
-        //     'preco' => 'required'
-        // ]);
-        $produto = Produto::find($id);
-        $produto->rotulo = $request->rotulo;
-        //$produto->quantidade = $request->quantidade;
-        //devo ver se não é mais prático colocar o estoque do produto na tabela dele 
-        //ou se deve ser trocada a relação para a referencia ficar em produtos
-        $produto->save();
-        return $produto->toArray();
+        Produto::where('id', $id)->update($request->toArray());
+        return $this->show($id);
     }
 
     /**
