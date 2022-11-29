@@ -64,7 +64,9 @@ class ClientesController extends Controller
      */
     public function show($id)
     {
-        $cliente = Cliente::findOrFail($id);
+        $cliente = Cliente::findOrFail($id)->toArray();
+        $enderecos = Endereco::where('cliente_id', $id)->get()->toArray();
+        $cliente['enderecos'] = $enderecos; 
         return $cliente;
     }
 
