@@ -14,7 +14,7 @@ class FormasDePagamentoController extends Controller
      */
     public function index()
     {
-        //
+        return FormaDePagamento::all();
     }
 
     /**
@@ -47,7 +47,7 @@ class FormasDePagamentoController extends Controller
      */
     public function show($id)
     {
-        //
+        return FormaDePagamento::findOrFail($id);
     }
 
     /**
@@ -70,7 +70,8 @@ class FormasDePagamentoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        FormaDePagamento::where('id', $id)->update($request->toArray());
+        return $this->show($id);
     }
 
     /**
@@ -81,6 +82,6 @@ class FormasDePagamentoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return FormaDePagamento::destroy($id);
     }
 }
