@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('latitude', 12)->nullable();
             $table->string('longitude', 12)->nullable();
             $table->unsignedBigInteger('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('clientes');
+            $table->foreign('cliente_id')->references('id')->on('clientes')->cascadeOnUpdate();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->engine = "InnoDB";

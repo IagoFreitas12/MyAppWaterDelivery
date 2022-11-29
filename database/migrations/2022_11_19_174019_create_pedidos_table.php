@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
-            $table->string('endereco');
+            $table->unsignedBigInteger('endereco_id');
+            $table->foreign('endereco_id')->references('id')->on('enderecos');
             $table->unsignedBigInteger('cliente_id');
             $table->foreign('cliente_id')->references('id')->on('clientes');
             $table->unsignedBigInteger('forma_de_pagamento_id');
