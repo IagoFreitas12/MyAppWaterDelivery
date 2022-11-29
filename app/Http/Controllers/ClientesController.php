@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cliente;
+use App\Models\Endereco;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -43,6 +44,16 @@ class ClientesController extends Controller
         ]);
         $cliente = Cliente::create($request->toArray());
         return $cliente;
+    }
+
+    public function addAddress(Request $request, $id)
+    {
+        $endereco = Endereco::create([
+            'latitude'=>$request->toArray()['latitude'],
+            'longitude'=>$request->toArray()['longitude'],
+            'cliente_id'=>$id
+        ]);
+        return $this->show($id);
     }
 
     /**

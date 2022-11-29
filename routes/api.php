@@ -54,6 +54,7 @@ Route::prefix('itensDePedido')->group(function(){
 Route::prefix('clientes')->group(function(){
     Route::post('/', [ClientesController::class, 'store']);
     Route::get('/', [ClientesController::class, 'index']);
+    Route::post('/{id}/enderecos', [ClientesController::class, 'addAddress']);
     Route::get('/{id}', [ClientesController::class, 'show']);
     Route::patch('/{id}', [ClientesController::class, 'update']);
     Route::delete('/{id}', [ClientesController::class, 'destroy']);
