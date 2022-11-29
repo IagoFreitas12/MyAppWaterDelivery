@@ -69,5 +69,4 @@ Route::prefix('formasdepagamento')->group(function(){
     Route::get('/{id}', [FormasDePagamentoController::class, 'show']);
     Route::patch('/{id}', [FormasDePagamentoController::class, 'update']);
     Route::delete('/{id}', [FormasDePagamentoController::class, 'destroy']);
-    Route::post('/{id}/pedidos', [FormasDePagamentoController::class, 'addOrder']);
 });
