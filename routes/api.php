@@ -58,4 +58,5 @@ Route::prefix('clientes')->group(function(){
     Route::get('/{id}', [ClientesController::class, 'show']);
     Route::patch('/{id}', [ClientesController::class, 'update']);
     Route::delete('/{id}', [ClientesController::class, 'destroy']);
+    Route::post('/{id}/pedidos', [ClientesController::class, 'addOrder']);
 });

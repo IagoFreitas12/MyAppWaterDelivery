@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Endereco;
+use App\Models\Pedido;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -61,6 +62,15 @@ class ClientesController extends Controller
             'cliente_id'=>$id
         ]);
         return $this->show($id);
+    }
+
+    public function addOrder(Request $request, $id)
+    {
+        $pedido = Pedido::create([
+            'cliente_id'=>$id,
+            ...$request->toArray()
+        ]);
+        return $pedido;
     }
 
     /**
