@@ -77,7 +77,8 @@ class ClientesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Cliente::findOrFail($id)->update($request->toArray());
+        return $this->show($id);
     }
 
     /**
