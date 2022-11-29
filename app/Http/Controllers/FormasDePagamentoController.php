@@ -47,7 +47,7 @@ class FormasDePagamentoController extends Controller
      */
     public function show($id)
     {
-        //
+        return FormaDePagamento::findOrFail($id);
     }
 
     /**
