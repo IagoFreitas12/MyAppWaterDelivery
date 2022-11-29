@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EntregasController;
 use App\Http\Controllers\CategoriasController;
+use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,4 +49,12 @@ Route::prefix('itensDePedido')->group(function(){
     Route::get('/{id}', [ItensDePedidoController::class, 'show']);
     Route::patch('/{id}', [ItensDePedidoController::class, 'update']);
     Route::delete('/{id}', [ItensDePedidoController::class, 'destroy']);
+});
+
+Route::prefix('clientes')->group(function(){
+    Route::post('/', [ClientesController::class, 'store']);
+    Route::get('/', [ClientesController::class, 'index']);
+    Route::get('/{id}', [ClientesController::class, 'show']);
+    Route::patch('/{id}', [ClientesController::class, 'update']);
+    Route::delete('/{id}', [ClientesController::class, 'destroy']);
 });

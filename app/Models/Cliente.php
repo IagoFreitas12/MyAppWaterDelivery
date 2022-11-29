@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cliente extends Model
 {
+    protected $fillable = [
+        'nome',
+        'sobrenome',
+        'cpf_cnpj',
+        'telefone'
+    ];
+
     public function enderecos()
     {
         return $this->hasMany(Endereco::class);

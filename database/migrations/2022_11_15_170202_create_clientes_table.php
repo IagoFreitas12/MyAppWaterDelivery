@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nome', 60);
             $table->string('sobrenome', 60)->nullable();
-            $table->string('cpf/cnpj', 14);
+            $table->string('cpf_cnpj', 14);
             $table->string('telefone', 11);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
