@@ -89,6 +89,6 @@ class ClientesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return Cliente::destroy($id);
     }
 }
