@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use App\Models\Endereco;
+use App\Models\ItemDePedido;
 use App\Models\Pedido;
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class ClientesController extends Controller
@@ -71,6 +73,21 @@ class ClientesController extends Controller
             ...$request->toArray()
         ]);
         return $pedido;
+    }
+
+    public function addOrderItem(Request $request, $cliente_id, $pedido_id){
+        $request->validate([
+            'produto_id' => 'required',
+            'quantidade' => 'required'
+        ]);
+        $produto = Produto::findOrFail($request->toArray()['produto_id'])->toArray();
+        $itemDePedido = ItemDePedido::create([
+            'quantidade' => $request->toArray()['quantidade'],
+            'preco' => $produto['preco'],
+            'pedido_id' => $pedido_id,
+            'produto_id' => $request->toArray()['produto_id']
+        ]);
+        return $itemDePedido;
     }
 
     /**

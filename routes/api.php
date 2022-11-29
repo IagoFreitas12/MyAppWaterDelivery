@@ -4,6 +4,7 @@ use App\Http\Controllers\EntregasController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\FormasDePagamentoController;
+use App\Http\Controllers\ItensDePedidoController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -60,6 +61,7 @@ Route::prefix('clientes')->group(function(){
     Route::patch('/{id}', [ClientesController::class, 'update']);
     Route::delete('/{id}', [ClientesController::class, 'destroy']);
     Route::post('/{id}/pedidos', [ClientesController::class, 'addOrder']);
+    Route::post('/{cliente_id}/pedidos/{pedido_id}', [ClientesController::class, 'addOrderItem']);
 });
 
 Route::prefix('formasdepagamento')->group(function(){
