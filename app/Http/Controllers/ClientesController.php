@@ -15,7 +15,14 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        $clientes = Cliente::all();
+        $response = Cliente::all()->toArray();
+        $clientes = [];
+        foreach($response as $cliente)
+        {
+            $enderecos = Endereco::where('cliente_id', $cliente['id'])->get()->toArray();
+            $cliente['enderecos'] = $enderecos; 
+            array_push($clientes, $cliente);
+        }
         return $clientes;
     }
 
