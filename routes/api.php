@@ -3,6 +3,7 @@
 use App\Http\Controllers\EntregasController;
 use App\Http\Controllers\CategoriasController;
 use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\FormasDePagamentoController;
 use App\Http\Controllers\ProdutosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,4 +60,14 @@ Route::prefix('clientes')->group(function(){
     Route::patch('/{id}', [ClientesController::class, 'update']);
     Route::delete('/{id}', [ClientesController::class, 'destroy']);
     Route::post('/{id}/pedidos', [ClientesController::class, 'addOrder']);
+});
+
+Route::prefix('formasdepagamento')->group(function(){
+    Route::post('/', [FormasDePagamentoController::class, 'store']);
+    Route::get('/', [FormasDePagamentoController::class, 'index']);
+    Route::post('/{id}/enderecos', [FormasDePagamentoController::class, 'addAddress']);
+    Route::get('/{id}', [FormasDePagamentoController::class, 'show']);
+    Route::patch('/{id}', [FormasDePagamentoController::class, 'update']);
+    Route::delete('/{id}', [FormasDePagamentoController::class, 'destroy']);
+    Route::post('/{id}/pedidos', [FormasDePagamentoController::class, 'addOrder']);
 });
