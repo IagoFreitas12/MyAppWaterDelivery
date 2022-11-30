@@ -81,7 +81,10 @@ class EntregasController extends Controller
      */
     public function show($id)
     {
-        //
+        $entrega = Entrega::findOrFail($id)->toArray();
+        $itens_de_entrega = ItemDeEntrega::where('entrega_id', $id)->get()->toArray();
+        $entrega['itens_de_entrega'] = $itens_de_entrega;
+        return $entrega;
     }
 
     /**
