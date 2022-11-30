@@ -10,7 +10,8 @@ class Pedido extends Model
     protected $fillable = [
         'cliente_id',
         'endereco_id',
-        'forma_de_pagamento_id'
+        'forma_de_pagamento_id',    
+        'status'
     ];
     
     public function itemDePedidos()
