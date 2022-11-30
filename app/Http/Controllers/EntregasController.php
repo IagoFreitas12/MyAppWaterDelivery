@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entrega;
+use App\Models\ItemDeEntrega;
 use Illuminate\Http\Request;
 
 class EntregasController extends Controller
@@ -32,9 +34,10 @@ class EntregasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $entrega = Entrega::create();
+        return $entrega;
     }
 
     /**

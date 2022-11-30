@@ -76,3 +76,7 @@ Route::prefix('formasdepagamento')->group(function(){
     Route::patch('/{id}', [FormasDePagamentoController::class, 'update']);
     Route::delete('/{id}', [FormasDePagamentoController::class, 'destroy']);
 });
+
+Route::prefix('entregas')->group(function(){
+    Route::post('/', [EntregasController::class, 'store']);
+});

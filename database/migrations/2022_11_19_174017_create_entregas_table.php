@@ -15,8 +15,6 @@ return new class extends Migration
     {
         Schema::create('entregas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('entregador_id');
-            $table->foreign('entregador_id')->references('id')->on('entregadores');
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->engine = "InnoDB";
