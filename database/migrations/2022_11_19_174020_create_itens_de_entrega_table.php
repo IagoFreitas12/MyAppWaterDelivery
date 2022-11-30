@@ -19,8 +19,7 @@ return new class extends Migration
             $table->foreign('pedido_id')->references('id')->on('pedidos');
             $table->unsignedBigInteger('entrega_id');
             $table->foreign('entrega_id')->references('id')->on('entregas');
-            $table->unsignedBigInteger('status_id');
-            $table->foreign('status_id')->references('id')->on('statuses');
+            $table->enum('status', [1, 2]);
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent()->useCurrentOnUpdate();
             $table->engine = "InnoDB";

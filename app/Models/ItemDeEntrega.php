@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class ItemDeEntrega extends Model
 {
     protected $table = "itens_de_entrega";
+    protected $fillable = [
+        'pedido_id',
+        'entrega_id',
+        'status'
+    ];
 
     public function pedidos()
     {

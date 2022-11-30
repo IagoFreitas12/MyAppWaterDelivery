@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrega;
 use App\Models\ItemDeEntrega;
+use App\Models\Pedido;
+use Exception;
 use Illuminate\Http\Request;
 
 class EntregasController extends Controller
@@ -38,6 +40,23 @@ class EntregasController extends Controller
     {
         $entrega = Entrega::create();
         return $entrega;
+    }
+
+    public function addItemDeEntrega(Request $request, $entrega_id)
+    {
+        $pedido_id = $request->toArray()['pedido_id'];
+        $pedido = Pedido::where([
+            'status' => 2,
+            'id' => $pedido_id
+        ])->get()->toArray();
+        if($pedido == []) {
+            throw new Exception('Pedido não finalizado');
+        }
+        return ItemDeEntrega::create([
+            'pedido_id' => $pedido_id,
+            'entrega_id' => $entrega_id,
+            'status' => 1
+        ]);
     }
 
     /**

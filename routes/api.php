@@ -79,4 +79,5 @@ Route::prefix('formasdepagamento')->group(function(){
 
 Route::prefix('entregas')->group(function(){
     Route::post('/', [EntregasController::class, 'store']);
+    Route::post('/{entrega_id}', [EntregasController::class, 'addItemDeEntrega']);
 });
