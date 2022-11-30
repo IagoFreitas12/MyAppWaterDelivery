@@ -90,6 +90,16 @@ class ClientesController extends Controller
         return $itemDePedido;
     }
 
+    public function getPedidos($cliente_id){
+        $pedido = Pedido::where('cliente_id', $cliente_id)->get()->take(1)->toArray()[0];
+        $pedido['itens'] = [];
+        $itensDePedido = ItemDePedido::where('pedido_id', $pedido['id'])->get()->toArray();
+        foreach($itensDePedido as $itemDePedido){
+            array_push($pedido['itens'], $itemDePedido);
+        }
+        return $pedido;
+    }
+
     /**
      * Display the specified resource.
      *

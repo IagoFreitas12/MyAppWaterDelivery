@@ -62,6 +62,7 @@ Route::prefix('clientes')->group(function(){
     Route::delete('/{id}', [ClientesController::class, 'destroy']);
     Route::post('/{id}/pedidos', [ClientesController::class, 'addOrder']);
     Route::post('/{cliente_id}/pedidos/{pedido_id}', [ClientesController::class, 'addOrderItem']);
+    Route::get('/{cliente_id}/pedidos', [ClientesController::class, 'getPedidos']);
 });
 
 Route::prefix('formasdepagamento')->group(function(){
