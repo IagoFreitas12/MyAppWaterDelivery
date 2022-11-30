@@ -17,7 +17,14 @@ class EntregasController extends Controller
      */
     public function index()
     {
-        //
+        $response = Entrega::all()->toArray();
+        $entregas = [];
+        foreach ($response as $entrega) {
+            $itens_de_entrega = ItemDeEntrega::where('entrega_id', $entrega['id'])->get()->toArray();
+            $entrega['itens_de_entrega'] = $itens_de_entrega;
+            array_push($entregas, $entrega);
+        }
+        return $entregas;
     }
 
     /**

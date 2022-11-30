@@ -81,5 +81,6 @@ Route::prefix('entregas')->group(function(){
     Route::post('/', [EntregasController::class, 'store']);
     Route::post('/{entrega_id}', [EntregasController::class, 'addItemDeEntrega']);
     Route::get('/{id}', [EntregasController::class, 'show']);
+    Route::get('/', [EntregasController::class, 'index']);
     Route::post('/{entrega_id}/itens_de_entrega/{item_de_entrega_id}/status/finalizar', [EntregasController::class, 'finishingItemDeEntrega']);
 });
