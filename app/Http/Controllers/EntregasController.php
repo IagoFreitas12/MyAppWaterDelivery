@@ -59,6 +59,20 @@ class EntregasController extends Controller
         ]);
     }
 
+    public function finishingItemDeEntrega($entrega_id, $item_de_entrega_id)
+    {
+        $item_de_entrega = ItemDeEntrega::where([
+            'entrega_id' => $entrega_id,
+            'id' => $item_de_entrega_id,
+            'status' => 1
+        ])->take(1)->get()->toArray();
+        if (count($item_de_entrega) == 0) {
+            throw new Exception('Não foi encontrado item de entrega com o status em andamento com este id');
+        }
+        ItemDeEntrega::where('id', $item_de_entrega_id)->update(['status' => 2]);
+        return $this->show($entrega_id);
+    }
+
     /**
      * Display the specified resource.
      *
