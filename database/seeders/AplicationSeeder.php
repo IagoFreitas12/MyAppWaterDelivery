@@ -18,7 +18,8 @@ class AplicationSeeder extends Seeder
             ProdutoSeeder::class,
             ClienteSeeder::class,
             FormaDePagamentoSeeder::class,
-            StatusSeeder::class
+            StatusSeeder::class,
+            EntregaSeeder::class
         ]);
     }
 }
