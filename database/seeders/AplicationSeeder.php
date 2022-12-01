@@ -17,7 +17,8 @@ class AplicationSeeder extends Seeder
         $this->call([
             ProdutoSeeder::class,
             ClienteSeeder::class,
-            FormaDePagamentoSeeder::class
+            FormaDePagamentoSeeder::class,
+            StatusSeeder::class
         ]);
     }
 }
