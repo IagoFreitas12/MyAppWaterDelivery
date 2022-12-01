@@ -16,7 +16,7 @@ class CategoriaSeeder extends Seeder
     public function run()
     {
         // cria 5 categorias com id de 1 a 5
-        for($id = 1 ; $id <= 5 ; $id++){
+        for($id = 1 ; $id <= 10 ; $id++){
             Categoria::create($this->makeCategoria($id));
         }
     }

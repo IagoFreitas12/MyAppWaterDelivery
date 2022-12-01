@@ -24,7 +24,7 @@ class ProdutoSeeder extends Seeder
         $categorias = Categoria::all()->toArray();
         $faker = Faker::create();
         for($j = 0; $j < count($categorias); $j++) {
-            for($i = 1; $i <=10; $i++) {
+            for($i = 1; $i <= $faker->randomNumber(1, false); $i++) {
                 Produto::create($this->makeProduto($i +$j*10, $categorias[$j]['id']));
                 Estoque::create([
                     'id' => $i +$j*10,
@@ -38,7 +38,7 @@ class ProdutoSeeder extends Seeder
     public function makeProduto($id, $categoria_id) {
         $faker = Faker::create();
         return [
-            'nome' => $faker->name(),
+            'nome' => $faker->word(),
             'preco' => $faker->randomFloat(2, 1, 25),
             'categoria_id' => $categoria_id,
             'id' => $id
