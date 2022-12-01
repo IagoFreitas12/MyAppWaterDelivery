@@ -29,4 +29,9 @@ class FormaDePagamentoSeeder extends Seeder
             'id' => 3
         ]);
     }
+
+    public static function get_random() {
+        $result = FormaDePagamento::all()->toArray();
+        return $result[array_rand($result, 1)];
+    }
 }
